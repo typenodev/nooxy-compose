@@ -7,7 +7,7 @@ services:
       PAGE_ID: "3070813acca0800da637f35bb4837b87"
       NOTION_SUBDOMAIN: "3070813acca0800da637f35bb4837b87"
       SITE_NAME: "PhotoBook"
-      DOMAIN: "photo.typenode.net"
+      DOMAIN: "noox.zeabur.app"
       SITE_PASS: "111" # 留空则关闭密码保护
     ports:
       - "4000:4000"
