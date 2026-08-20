@@ -1,0 +1,26 @@
+services:
+  nooxy:
+    image: node:22-alpine
+    restart: unless-stopped
+    environment:
+      PORT: "4000"
+      PAGE_ID: "3070813acca0800da637f35bb4837b87"
+      NOTION_SUBDOMAIN: "3070813acca0800da637f35bb4837b87"
+      SITE_NAME: "PhotoBook"
+      DOMAIN: "photo.typenode.net"
+      SITE_PASS: "111" # 留空则关闭密码保护
+    ports:
+      - "4000:4000"
+    working_dir: /app
+    volumes:
+      - nooxy_nm:/app/node_modules
+      - ./server.mjs:/app/server.mjs:ro # 挂载本地代码，方便热更新
+    command: >
+      sh -c "
+        mkdir -p /app && cd /app &&
+        if [ ! -d node_modules/nooxy ]; then npm init -y >/dev/null 2>&1 && npm install nooxy@2.0.0; fi &&
+        node /app/server.mjs
+      "
+
+volumes:
+  nooxy_nm:
